@@ -11,11 +11,37 @@
 // function that gets called with each element in the tree
 
 class Node {
-  constructor() {
+  constructor(data) {
+    this.data = data
+    this.children = []
+  }
 
+  add(data) {
+    const node = new Node(data)
+    this.children.push(node)
+  }
+
+  remove(data) {
+    // reassigning the children of given node
+    // by filtering out the child node whose data property matches argument 
+    this.children = this.children.filter(childNode => {
+      childNode.data !== data
+    })
   }
 }
 
-class Tree {}
+class Tree {
+  constructor() {
+    this.root = null
+  }
+
+  traverseBF() {
+
+  }
+
+  traverseDF() {
+
+  }
+}
 
 module.exports = { Tree, Node };
