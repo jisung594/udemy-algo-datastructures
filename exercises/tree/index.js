@@ -23,7 +23,7 @@ class Node {
 
   remove(data) {
     // reassigning the children of given node
-    // by filtering out the child node whose data property matches argument 
+    // by filtering out the child node whose data property matches argument
     this.children = this.children.filter(childNode => {
       childNode.data !== data
     })
@@ -35,13 +35,41 @@ class Tree {
     this.root = null
   }
 
-  traverseBF() {
+  traverseBF(func) {
+    const arr = [this.root]
 
+    while (arr.length) {
+      // .shift to temporarily take out the first element in arr
+      const node = arr.shift()
+
+      // arr.push(node.children) **WRONG**
+      // arr.push(...node.children) **ANOTHER CORRECT WAY**
+      // cannot push node.children into arr because node.children is already an array
+      // and we don't want a nested array DO WE--?!
+      for (let child of node.children) {
+        arr.push(child)
+      }
+
+      func(node)
+    }
   }
 
-  traverseDF() {
+  traverseDF(func) {
+    const arr = [this.root]
 
+    while (arr.length) {
+      // takes out first node in arr
+      const node = arr.shift()
+
+      // adds children of node to the BEGINNING of arr
+      arr.unshift(...node.children)
+      func(node)
+    }
   }
 }
+
+const node1 = new Node("a")
+const tree = new Tree()
+tree.root = node1
 
 module.exports = { Tree, Node };
