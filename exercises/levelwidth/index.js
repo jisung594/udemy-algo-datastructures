@@ -18,7 +18,8 @@ function levelWidth(root) {
   const counters = [0]
 
   // we only want to run this process while there are any nodes in our array
-  // arr will always contain "stopper", so arr.length is always at least 1
+  // as long as there are any nodes in arr, arr will always contain "stopper"
+  // so arr.length is always be greater than 1
   while (arr.length > 1) {
     const node = arr.shift()
 
@@ -26,6 +27,14 @@ function levelWidth(root) {
       counters.push(0)
       // if the iteration is at "stopper"
       // we then need to set a new counter for the next row
+      arr.push("stopper")
+      // putting "stopper" back into array
+    } else {
+      arr.push(...node.children)
+      // when the iteration is at an actual node, push its children into array
+      counters[counters.length - 1]++
+      // last element in counters array is the current level of tree
+      console.log(counters[counters.length - 1])
     }
   }
 }
