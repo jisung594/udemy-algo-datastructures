@@ -68,8 +68,17 @@ class Tree {
   }
 }
 
-const node1 = new Node("a")
-const tree = new Tree()
-tree.root = node1
+  const node1 = new Node("a")
+  const tree = new Tree()
+  tree.root = node1
+
+
+  function addYeahhh(node) {
+    return node.data + " YEAHHH!!!"
+  }
+
+
+
+
 
 module.exports = { Tree, Node };
